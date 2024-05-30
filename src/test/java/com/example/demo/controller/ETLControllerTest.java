@@ -23,15 +23,83 @@ public class ETLControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void test_getSummaries_success() throws Exception {
+    public void test_getSummaries_no_param_success() throws Exception {
+        ClassPathResource resource = new ClassPathResource("expected_date_search.json");
+        String expectedJson = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
+
+        mvc.perform(get("/api/wagers/summary"))
+                .andExpect(status().isOk())
+                .andExpect(content().json(expectedJson));
+
+    }
+
+    @Test
+    public void test_getSummaries_date_success() throws Exception {
         String date = "2024-05-29";
-        ClassPathResource resource = new ClassPathResource("expected.json");
+        ClassPathResource resource = new ClassPathResource("expected_date_search.json");
         String expectedJson = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
 
         mvc.perform(get("/api/wagers/summary")
                 .param("date", date))
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedJson));
+
+    }
+
+    @Test
+    public void test_getSummaries_accountid_success() throws Exception {
+        String accountId = "550e8400-e29b-41d4-a716-446655440000";
+        ClassPathResource resource = new ClassPathResource("expected_account_search.json");
+        String expectedJson = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
+
+        mvc.perform(get("/api/wagers/summary")
+                        .param("accountId", accountId))
+                .andExpect(status().isOk())
+                .andExpect(content().json(expectedJson));
+
+    }
+
+    @Test
+    public void test_getSummaries_accountid_and_date_success() throws Exception {
+        String accountId = "550e8400-e29b-41d4-a716-446655440000";
+        String date = "2024-05-29";
+        ClassPathResource resource = new ClassPathResource("expected_account_and_date_search.json");
+        String expectedJson = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
+
+        mvc.perform(get("/api/wagers/summary")
+                        .param("accountId", accountId)
+                        .param("date",date))
+                .andExpect(status().isOk())
+                .andExpect(content().json(expectedJson));
+
+    }
+
+    @Test
+    public void test_getSummaries_invalid_date() throws Exception {
+        String date = "05-29-2024";
+        mvc.perform(get("/api/wagers/summary")
+                        .param("date", date))
+                .andExpect(status().is4xxClientError());
+
+    }
+
+    @Test
+    public void test_getSummaries_invalid_accountid() throws Exception {
+        String accountId = "550e8400-e29b-41d4-a716-446655440000x";
+        mvc.perform(get("/api/wagers/summary")
+                        .param("accountId", accountId))
+                .andExpect(status().is4xxClientError());
+
+    }
+
+    @Test
+    public void test_getSummaries_one_field_invalid() throws Exception {
+        String accountId = "550e8400-e29b-41d4-a716-446655440000x";
+        String date = "2024-05-29";
+        mvc.perform(get("/api/wagers/summary")
+                        .param("accountId", accountId)
+                        .param("date", date))
+                .andExpect(status().is4xxClientError());
 
     }
 
