@@ -1,19 +1,15 @@
 package com.example.demo.dto;
 
 import jakarta.persistence.Tuple;
-import jakarta.persistence.Id;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.UUID;
 
 @Data
 public class WagerSummary {
 
-    @Id
     UUID accountId;
 
     BigDecimal totalWagerAmount;
@@ -29,9 +25,7 @@ public class WagerSummary {
         WagerSummary wagerSummary = new WagerSummary();
         wagerSummary.accountId = accountId;
         wagerSummary.totalWagerAmount = totalWagerAmount;
-
-        Instant instant = wagerDate.toInstant();
-        wagerSummary.wagerDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+        wagerSummary.wagerDate = wagerDate.toLocalDate();
         return wagerSummary;
     }
 

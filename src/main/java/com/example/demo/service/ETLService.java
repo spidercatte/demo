@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.db2.repository.WagerSummaryRepository;
 import com.example.demo.dto.WagerSummary;
-import com.example.demo.db1.entity.Wager;
 import com.example.demo.db1.repository.WagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,14 +21,10 @@ public class ETLService {
     @Autowired
     WagerSummaryRepository wagerSummaryRepository;
 
-    public List<Wager> getWagers() {
-        return wagerRepository.findAll();
-    }
-
-    @Transactional
+    @Transactional("db1TransactionManager")
     public List<WagerSummary> getWagerSummary(LocalDate searchDate) {
-        List<Tuple> tuples = wagerRepository.getSummary(java.sql.Date.valueOf(searchDate));
 
+        List<Tuple> tuples = wagerRepository.getSummary(java.sql.Date.valueOf(searchDate));
         List<WagerSummary> summary = new ArrayList<>();
         List<com.example.demo.db2.entity.WagerSummary> summaryData = new ArrayList<>();
 
