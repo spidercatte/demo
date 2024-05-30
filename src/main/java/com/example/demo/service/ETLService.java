@@ -1,17 +1,17 @@
 package com.example.demo.service;
 
+import com.example.demo.db2.repository.WagerSummaryRepository;
 import com.example.demo.dto.WagerSummary;
 import com.example.demo.db1.entity.Wager;
 import com.example.demo.db1.repository.WagerRepository;
-import jakarta.persistence.Tuple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+import jakarta.persistence.Tuple;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ETLService {
@@ -19,20 +19,29 @@ public class ETLService {
     @Autowired
     WagerRepository wagerRepository;
 
+    @Autowired
+    WagerSummaryRepository wagerSummaryRepository;
+
     public List<Wager> getWagers() {
         return wagerRepository.findAll();
     }
 
-    public List<WagerSummary> getWagerSummary() {
-        List<Tuple> tuples = wagerRepository.getSummary();
+    @Transactional
+    public List<WagerSummary> getWagerSummary(LocalDate searchDate) {
+        List<Tuple> tuples = wagerRepository.getSummary(java.sql.Date.valueOf(searchDate));
+
         List<WagerSummary> summary = new ArrayList<>();
+        List<com.example.demo.db2.entity.WagerSummary> summaryData = new ArrayList<>();
+
         for (Tuple tuple : tuples) {
-            UUID accountId = tuple.get(0, UUID.class);
-            Date date = tuple.get(1, Date.class);
-            BigDecimal totalWagerAmount = tuple.get(2, BigDecimal.class);
-            WagerSummary wagerSummary = WagerSummary.builder(accountId,totalWagerAmount,date);
-            summary.add(wagerSummary);
+            WagerSummary dto = WagerSummary.toDto(tuple);
+            com.example.demo.db2.entity.WagerSummary data = WagerSummary.toEntity(dto);
+            summaryData.add(data);
+            summary.add(dto);
         }
+
+        wagerSummaryRepository.saveAll(summaryData);
+
         return summary;
     }
 

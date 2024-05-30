@@ -1,0 +1,17 @@
+[
+  {
+    "account_id": "550e8400-e29b-41d4-a716-446655440000",
+    "total_wager_amount": 301.5,
+    "wager_date": "2024-05-29"
+  },
+  {
+    "account_id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+    "total_wager_amount": 602.25,
+    "wager_date": "2024-05-29"
+  },
+  {
+    "account_id": "7c7e61ff-988c-4d92-8c20-2bb8a2ac134b",
+    "total_wager_amount": 900.75,
+    "wager_date": "2024-05-29"
+  }
+]
