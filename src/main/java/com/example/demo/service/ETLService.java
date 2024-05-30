@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 import jakarta.persistence.Tuple;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,9 +24,16 @@ public class ETLService {
     WagerSummaryRepository wagerSummaryRepository;
 
     @Transactional("db1TransactionManager")
-    public List<WagerSummary> getWagerSummary(LocalDate searchDate) {
-
-        List<Tuple> tuples = wagerRepository.getSummary(java.sql.Date.valueOf(searchDate));
+    public List<WagerSummary> getWagerSummary(UUID accountId,LocalDate searchDate) {
+        java.sql.Date sqlDate = null;
+        UUID searchAccountId = null;
+        if (searchDate != null) {
+            sqlDate = java.sql.Date.valueOf(searchDate);
+        }
+        if(accountId != null) {
+            searchAccountId = accountId;
+        }
+        List<Tuple> tuples = wagerRepository.getSummary(searchAccountId, sqlDate);
         List<WagerSummary> summary = new ArrayList<>();
         List<com.example.demo.db2.entity.WagerSummary> summaryData = new ArrayList<>();
 

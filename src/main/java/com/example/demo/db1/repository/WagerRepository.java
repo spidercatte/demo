@@ -15,9 +15,11 @@ import java.util.UUID;
 @Repository
 public interface WagerRepository extends JpaRepository<Wager, UUID> {
 
+
     @Query("SELECT b.accountId, b.date, b.total FROM " +
             "(SELECT e.accountId AS accountId, DATE(e.wagerTime) AS date, SUM(e.wagerAmount) AS total " +
-            "FROM  Wager e GROUP BY e.accountId, DATE(e.wagerTime)) AS b " +
-            "WHERE DATE(b.date) = :date")
-    List<Tuple> getSummary(@Param("date") Date date);
+            "FROM Wager e GROUP BY e.accountId, DATE(e.wagerTime)) AS b " +
+            "WHERE (:accountId IS NULL OR b.accountId = :accountId) " +
+            "AND (:date IS NULL OR DATE(b.date) = :date)")
+    List<Tuple> getSummary(@Param("accountId") UUID accountId, @Param("date") Date date);
 }

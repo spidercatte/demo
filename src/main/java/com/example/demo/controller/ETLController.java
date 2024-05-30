@@ -4,13 +4,16 @@ import com.example.demo.dto.WagerSummary;
 import com.example.demo.service.ETLService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -20,8 +23,11 @@ public class ETLController {
     private ETLService etlService;
 
     @GetMapping("/wagers/summary")
-    public List<WagerSummary> getWagerSummary(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
-        return etlService.getWagerSummary(date);
+    public List<WagerSummary> getWagerSummary(
+            @RequestParam(name="date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
+            @RequestParam(name="accountId", required = false) UUID accountId) {
+
+        return etlService.getWagerSummary(accountId, date);
     }
 
     @GetMapping("/hello")
