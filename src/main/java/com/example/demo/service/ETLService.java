@@ -24,7 +24,7 @@ public class ETLService {
     WagerSummaryRepository wagerSummaryRepository;
 
     @Transactional("db1TransactionManager")
-    public List<WagerSummary> getWagerSummary(UUID accountId,LocalDate searchDate) {
+    public List<com.example.demo.db2.entity.WagerSummary> getWagerSummary(UUID accountId,LocalDate searchDate) {
         java.sql.Date sqlDate = null;
         UUID searchAccountId = null;
         if (searchDate != null) {
@@ -33,20 +33,20 @@ public class ETLService {
         if(accountId != null) {
             searchAccountId = accountId;
         }
+
         List<Tuple> tuples = wagerRepository.getSummary(searchAccountId, sqlDate);
-        List<WagerSummary> summary = new ArrayList<>();
         List<com.example.demo.db2.entity.WagerSummary> summaryData = new ArrayList<>();
 
         for (Tuple tuple : tuples) {
-            WagerSummary dto = WagerSummary.toDto(tuple);
-            com.example.demo.db2.entity.WagerSummary data = WagerSummary.toEntity(dto);
+            com.example.demo.db2.entity.WagerSummary data = WagerSummary.toEntity(tuple);
             summaryData.add(data);
-            summary.add(dto);
         }
 
-        wagerSummaryRepository.saveAll(summaryData);
+        if(!summaryData.isEmpty()) {
+            wagerSummaryRepository.saveAll(summaryData);
+        }
 
-        return summary;
+        return summaryData;
     }
 
 

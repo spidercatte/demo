@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.WagerSummary;
 import com.example.demo.service.ETLService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,7 +21,7 @@ public class ETLController {
     private ETLService etlService;
 
     @GetMapping("/wagers/summary")
-    public List<WagerSummary> getWagerSummary(
+    public List<com.example.demo.db2.entity.WagerSummary> getWagerSummary(
             @RequestParam(name="date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
             @RequestParam(name="accountId", required = false) UUID accountId) {
 

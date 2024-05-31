@@ -38,4 +38,15 @@ public class WagerSummary {
         return data;
     }
 
+    public static com.example.demo.db2.entity.WagerSummary toEntity(Tuple tuple){
+        UUID accountId = tuple.get(0, UUID.class);
+        java.sql.Date wagerDate = tuple.get(1, java.sql.Date.class);
+        BigDecimal totalWagerAmount = tuple.get(2, BigDecimal.class);
+
+        com.example.demo.db2.entity.WagerSummary data = new com.example.demo.db2.entity.WagerSummary();
+        data.setAccountId(accountId);
+        data.setTotalWagerAmount(totalWagerAmount);
+        data.setWagerDate(wagerDate);
+        return data;
+    }
 }
