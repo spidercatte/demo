@@ -6,12 +6,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.web.servlet.MockMvc;
+
+import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import org.springframework.util.StreamUtils;
 
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -60,6 +60,15 @@ public class ETLControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedJson));
 
+    }
+
+    @Test
+    public void test_getSummaries_no_accountid_found_success() throws Exception {
+        String accountId = "f47ac10b-58cc-4372-a567-0e02b2c3d479";
+        mvc.perform(get("/api/wagers/summary")
+                        .param("accountId", accountId))
+                .andExpect(status().isOk())
+                .andExpect(content().string(equalTo("[]")));
     }
 
     @Test
