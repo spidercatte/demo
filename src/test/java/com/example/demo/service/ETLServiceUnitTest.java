@@ -66,6 +66,14 @@ public class ETLServiceUnitTest {
     }
 
     @Test
+    public void test_getWagerSummary_null_params() {
+        List<com.example.demo.db2.entity.WagerSummary> result = etlService.getWagerSummary(null, null);
+
+        verify(wagerSummaryRepository, never()).saveAll(anyList());
+        Assertions.assertEquals(0, result.size()); //which is zero
+    }
+
+    @Test
     public void test_getWagerSummary_no_return_wagers() {
 
         UUID accountId = UUID.randomUUID();

@@ -1,0 +1,63 @@
+openapi: "3.1.0"
+info:
+  title: "demo API"
+  description: "demo API"
+  version: "1.0.0"
+servers:
+  - url: "https://demo"
+paths:
+  /api/wagers/summary:
+    get:
+      summary: "GET api/wagers/summary"
+      operationId: "getWagerSummary"
+      parameters:
+        - name: "date"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "date"
+        - name: "accountId"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/WagerSummary"
+  /api/hello:
+    get:
+      summary: "GET api/hello"
+      operationId: "hello"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+components:
+  schemas:
+    BigDecimal:
+      type: "object"
+      properties: { }
+    Date:
+      type: "object"
+      properties: { }
+    WagerSummary:
+      type: "object"
+      properties:
+        accountId:
+          type: "string"
+          format: "uuid"
+        totalWagerAmount:
+          $ref: "#/components/schemas/BigDecimal"
+        wagerDate:
+          $ref: "#/components/schemas/Date"
