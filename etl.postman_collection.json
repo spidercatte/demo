@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "15c8e5bb-6662-43df-be33-27a838dd02c5",
+		"name": "etl",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4956280",
+		"_collection_link": "https://solar-equinox-844893.postman.co/workspace/c25c13b1-5692-4a77-a21e-d7eb7bb1dc0d/collection/4956280-15c8e5bb-6662-43df-be33-27a838dd02c5?action=share&source=collection_link&creator=4956280"
+	},
+	"item": [
+		{
+			"name": "wagersummary_noparam",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/wagers/summary",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wagers",
+						"summary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "wagersummary_date_param",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/wagers/summary?date=2024-05-29",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wagers",
+						"summary"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2024-05-29"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "wagersummary_date_invalid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/wagers/summary?date=05-29-2024",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wagers",
+						"summary"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "05-29-2024"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "wagersummary_acct_param",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/wagers/summary?accountId=550e8400-e29b-41d4-a716-446655440000",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wagers",
+						"summary"
+					],
+					"query": [
+						{
+							"key": "accountId",
+							"value": "550e8400-e29b-41d4-a716-446655440000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "wagersummary_acct_param_invalid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/wagers/summary?accountId=550e8400-e29b-41d4-a716-446655440000x",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wagers",
+						"summary"
+					],
+					"query": [
+						{
+							"key": "accountId",
+							"value": "550e8400-e29b-41d4-a716-446655440000x"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "wagersummary_all_params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/wagers/summary?accountId=550e8400-e29b-41d4-a716-446655440000&date=2024-05-29",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wagers",
+						"summary"
+					],
+					"query": [
+						{
+							"key": "accountId",
+							"value": "550e8400-e29b-41d4-a716-446655440000"
+						},
+						{
+							"key": "date",
+							"value": "2024-05-29"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "wagersummary_no_record",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/wagers/summary?accountId=550e8400-e29b-41d4-a716-446655440000&date=2024-05-31",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"wagers",
+						"summary"
+					],
+					"query": [
+						{
+							"key": "accountId",
+							"value": "550e8400-e29b-41d4-a716-446655440000"
+						},
+						{
+							"key": "date",
+							"value": "2024-05-31"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
