@@ -14,14 +14,14 @@ class DemoApplicationTests {
 
     @Container
     private static final MySQLContainer<?> db1Container = new MySQLContainer<>("mysql:8.0.23")
-            .withUsername("root")
+            .withUsername("test")
             .withPassword("")
             .withDatabaseName("db1");
 
 
     @Container
     private static final MySQLContainer<?> db2Container = new MySQLContainer<>("mysql:8.0.23")
-            .withUsername("root")
+            .withUsername("test")
             .withPassword("")
             .withDatabaseName("db2");
 

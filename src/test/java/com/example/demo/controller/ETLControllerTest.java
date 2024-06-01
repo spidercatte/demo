@@ -29,7 +29,7 @@ public class ETLControllerTest {
 
     @Test
     public void test_getSummaries_no_param_success() throws Exception {
-        ClassPathResource resource = new ClassPathResource("expected_date_search.json");
+        ClassPathResource resource = new ClassPathResource("test/data/expected_date_search.json");
         String expectedJson = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
 
         mvc.perform(get("/api/wagers/summary"))
@@ -40,7 +40,7 @@ public class ETLControllerTest {
 
     @Test
     public void test_getSummaries_date_success() throws Exception {
-        ClassPathResource resource = new ClassPathResource("expected_date_search.json");
+        ClassPathResource resource = new ClassPathResource("test/data/expected_date_search.json");
         String expectedJson = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
 
         mvc.perform(get("/api/wagers/summary")
@@ -52,7 +52,7 @@ public class ETLControllerTest {
 
     @Test
     public void test_getSummaries_accountid_success() throws Exception {
-        ClassPathResource resource = new ClassPathResource("expected_account_search.json");
+        ClassPathResource resource = new ClassPathResource("test/data/expected_account_search.json");
         String expectedJson = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
 
         mvc.perform(get("/api/wagers/summary")
@@ -73,7 +73,7 @@ public class ETLControllerTest {
 
     @Test
     public void test_getSummaries_accountid_and_date_success() throws Exception {
-        ClassPathResource resource = new ClassPathResource("expected_account_and_date_search.json");
+        ClassPathResource resource = new ClassPathResource("test/data/expected_account_and_date_search.json");
         String expectedJson = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
 
         mvc.perform(get("/api/wagers/summary")

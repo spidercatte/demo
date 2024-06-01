@@ -73,8 +73,6 @@ public class ETLServiceUnitTest {
         List<Tuple> tuples = new ArrayList<>();
         List<com.example.demo.db2.entity.WagerSummary> result = etlService.getWagerSummary(accountId, wagerDate.toLocalDate());
 
-        when(wagerRepository.getSummary(accountId, wagerDate)).thenReturn(tuples);
-
         verify(wagerRepository, atLeastOnce()).getSummary(accountId, wagerDate);
         verify(wagerSummaryRepository, never()).saveAll(anyList());
         Assertions.assertEquals(tuples.size(), result.size()); //which is zero
