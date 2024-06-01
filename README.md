@@ -45,10 +45,10 @@ mvn spring-boot:run
 Open a web browser and navigate to http://localhost:8080/api/wagers to access the running application.
 
 #### Test the Endpoints
-Use Postman collection (`CodingTest.postman_collection.json`) or curl to test the REST endpoints exposed by the application.
+Use Postman collection (`etl.postman_collection.json`) or curl to test the REST endpoints exposed by the application.
 
 ```
-curl -v -F 'file=@"/path/matrix.csv"' localhost:8080/api/echo
+curl 'localhost:8080/api/wagers/summary'
 ```
 
 #### Shutdown the Application
