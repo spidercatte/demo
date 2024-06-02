@@ -27,7 +27,7 @@ After setting up the environment, follow these steps to run the Spring Boot REST
 - Install [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) on your machine.
 
 ### Initiate the database
-Login to your mysql server, normally with root credential, unless you created new schemas.
+Login to your mysql server, normally with root credential, unless you created new users.
 
 ```
  mysql -u root
