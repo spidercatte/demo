@@ -33,7 +33,7 @@ Login to your mysql server, normally with root credential, unless you created ne
  mysql -u root
 ```
 
-Run the following scripts to instantiate create of database on different MySQL servers
+Run the following scripts to instantiate create of databases MySQL servers
 
 On db1
 ```
