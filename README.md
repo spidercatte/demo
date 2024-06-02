@@ -73,7 +73,7 @@ This command will start the Spring Boot application locally.
 mvn spring-boot:run
 ```
 
-Alternatively you can use run the application by right-clicking on the DemoApplication.java if you are using the intellij IDE
+Alternatively you can use run the application by right-clicking on the DemoApplication.java if you are using the intellij IDE.
 
 ##### Access the Application
 Open a web browser and navigate to http://localhost:8080/api/wagers to access the running application.
