@@ -1,5 +1,8 @@
 # ETL Coding Assignment Application
 
+Write an ETL (Extract-Transform-Load) server app that will read data from one database instance(db1), 
+summarize the data and write the summarized data to another database instance(db2). 
+
 ## Development
 
 ### Setup Local Environment
@@ -74,16 +77,16 @@ Alternatively you can use run the application by right-clicking on the DemoAppli
 ##### Access the Application
 Open a web browser and navigate to http://localhost:8080/api/wagers to access the running application.
 
+You can alternatively use the swagger url to view the open api specification or (`demo-openapi.yaml`)
+http://localhost:8080/swagger-ui/index.html#/etl-controller/getWagerSummary
+
 #### Test the Endpoints
 Use Postman collection (`etl.postman_collection.json`) or curl to test the REST endpoints exposed by the application.
 
 ```
-curl 'localhost:8080/api/wagers/summary'
+curl 'localhost:8080/api/wagers/summary?accountId=550e8400-e29b-41d4-a716-446655440000&date=2024-05-29'
 ```
 
-You can alternatively use the swagger url to test 
-
-http://localhost:8080/swagger-ui/index.html#/etl-controller/getWagerSummary
 
 #### Run Tests 
 To run the created tests, use the following command. Please note that packaging will also run this command as part of the package workflow.
