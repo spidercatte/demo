@@ -41,6 +41,8 @@ This command will start the Spring Boot application locally.
 mvn spring-boot:run
 ```
 
+Alternatively you can use run the application by right-clicking on the DemoApplication.java if you are using the intellij IDE
+
 #### Access the Application
 Open a web browser and navigate to http://localhost:8080/api/wagers to access the running application.
 
@@ -50,6 +52,10 @@ Use Postman collection (`etl.postman_collection.json`) or curl to test the REST 
 ```
 curl 'localhost:8080/api/wagers/summary'
 ```
+
+You can alternatively use the swagger url to test 
+
+http://localhost:8080/swagger-ui/index.html#/etl-controller/getWagerSummary
 
 #### Shutdown the Application
 To stop the running application, press Ctrl + C in the terminal where the application is running.
