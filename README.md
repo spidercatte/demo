@@ -43,7 +43,7 @@ Create a user and grant access to db1 database as readonly
 
 ```
 CREATE USER 'readonly_user'@'%' IDENTIFIED BY 'password';
-GRANT SELECT ON your_database_name.* TO 'readonly_user'@'%';
+GRANT SELECT ON db1.* TO 'readonly_user'@'%';
 ```
 
 On db2
