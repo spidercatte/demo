@@ -23,8 +23,34 @@ mvn compile
 ### Run Locally
 After setting up the environment, follow these steps to run the Spring Boot REST application locally:
 
+### Install MsqlServer
+- Install [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) on your machine.
+
 ### Initiate the database
-Run the liquibase change logs to create the tables and populate the test data
+Login to your mysql server, normally with root credential, unless you created new schemas.
+
+```
+ mysql -u root
+```
+
+Run the following scripts to instantiate create of database on different MySQL servers
+
+On db1
+```
+CREATE DATABASE db1;
+```
+On db2
+```
+CREATE DATABASE db2;
+```
+
+List the databases, to verify that it has been created
+```
+Show databases;
+```
+
+Run the liquibase change logs to create the tables and populate the test data.
+The connection to their respective databases are defined in their property files.
 ```
 mvn liquibase:update -Dliquibase.propertyFile=path_to/src/main/resources/liquibasedb1.properties
 mvn liquibase:update -Dliquibase.propertyFile=path_to/src/main/resources/liquibasedb2.properties
