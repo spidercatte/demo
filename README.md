@@ -20,13 +20,10 @@ mvn clean
 mvn compile
 ```
 
-### Run Locally
-After setting up the environment, follow these steps to run the Spring Boot REST application locally:
-
-### Install MsqlServer
+#### Install MsqlServer
 - Install [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) on your machine.
 
-### Initiate the database
+##### Initiate the database
 Login to your mysql server, normally with root credential, unless you created new users.
 
 ```
@@ -63,12 +60,10 @@ mvn liquibase:update -Dliquibase.propertyFile=path_to/src/main/resources/liquiba
 mvn liquibase:update -Dliquibase.propertyFile=path_to/src/main/resources/liquibasedb2.properties
 ```
 
-### Run Tests
-```
-mvn test
-```
+#### Run Locally
+After setting up the environment, follow these steps to run the Spring Boot REST application locally:
 
-#### Run the Application
+##### Run the Application
 This command will start the Spring Boot application locally.
 ```
 mvn spring-boot:run
@@ -76,7 +71,7 @@ mvn spring-boot:run
 
 Alternatively you can use run the application by right-clicking on the DemoApplication.java if you are using the intellij IDE
 
-#### Access the Application
+##### Access the Application
 Open a web browser and navigate to http://localhost:8080/api/wagers to access the running application.
 
 #### Test the Endpoints
@@ -90,22 +85,28 @@ You can alternatively use the swagger url to test
 
 http://localhost:8080/swagger-ui/index.html#/etl-controller/getWagerSummary
 
+#### Run Tests 
+To run the created tests, use the following command. Please note that packaging will also run this command as part of the package workflow.
+```
+mvn test
+```
+
 #### Shutdown the Application
 To stop the running application, press Ctrl + C in the terminal where the application is running.
 
-## Packaging
+### Packaging
 
 ```
 mvn clean package
 ```
 
-### Create a Docker Image using BuildPak
+#### Create a Docker Image using BuildPak
 ```
 mvn spring-boot:build-image
 
 ```
 
-### Create a Docker Image manually
+#### Create a Docker Image manually
 ```
 docker build -t your-image-name --build-arg JAR_FILE=demo-0.0.1-SNAPSHOT.jar .
 
