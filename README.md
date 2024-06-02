@@ -25,6 +25,7 @@ mvn compile
 
 #### Install MsqlServer
 - Install [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) on your machine.
+- A docker compose (`compose.yaml`) is also provided if you want to use this method instead. Be sure to update the credentials accordingly in the properties files
 
 ##### Initiate the database
 Login to your mysql server, normally with root credential, unless you created new users.
